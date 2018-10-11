@@ -1,0 +1,20 @@
+spring:
+  log:
+    level: INFO
+logging:
+  file: ./logs/log.log
+---
+spring:
+  application:
+    name: micro-client
+server:
+  port: 8888
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/,http://peer3:8763/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
